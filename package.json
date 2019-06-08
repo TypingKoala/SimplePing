@@ -1,0 +1,30 @@
+{
+  "name": "simpleping",
+  "version": "1.0.0",
+  "description": "Just the ping. It's that simple.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TypingKoala/SimplePing.git"
+  },
+  "keywords": [
+    "ping",
+    "simple",
+    "web",
+    "jitter",
+    "latency"
+  ],
+  "author": "Johnny Bui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TypingKoala/SimplePing/issues"
+  },
+  "homepage": "https://github.com/TypingKoala/SimplePing#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0"
+  }
+}
