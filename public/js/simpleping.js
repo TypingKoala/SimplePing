@@ -55,13 +55,14 @@ ws.onopen = (evt) => {
 
 // rewrite the onmessage event to set the pingDiv
 ws.onmessage = (evt) => {
+    // try to parse the message into an integer
     parsedInt = parseInt(evt.data)
-    if (parsedInt != NaN &&
-        parsedInt < startTimes.length) {
-        pingDiv.innerHTML = Math.ceil(performance.now() -
-            startTimes[parsedInt]).toString()
-        console.log(performance.now() - startTimes[parsedInt])
-    } else {
+
+    // if the parsed message is an integer and it has a corresponding start time
+    if (parsedInt != NaN && parsedInt < startTimes.length) {
+        // set the pingDiv to the ceiling of the ping
+        pingDiv.innerHTML = Math.ceil(performance.now() - startTimes[parsedInt]).toString()
+    } else { // otherwise, this message tells you the location
         console.log(`Connected to the ping server in ${evt.data}!`)
     }
 }
