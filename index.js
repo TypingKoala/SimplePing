@@ -36,10 +36,6 @@ app.ws('/ping', (ws, req) => {
     })
 })
 
-
-
-app.listen(port, () => {
-    console.log(`The magic happens on port ${port}.`)
-})
-
-https.createServer(options, app).listen(3001);
+https.createServer(options, app).listen(3000, () => {
+    console.log("The magic happens on port 3000.")
+});
