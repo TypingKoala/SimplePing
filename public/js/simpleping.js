@@ -1,7 +1,7 @@
 var pingDiv = document.getElementById("ping");
 pingDiv.innerHTML = "Connecting...";
 
-var ws = new WebSocket(`ws://${location.host}/ping`);
+var ws = new WebSocket(`wss://${location.host}/ping`);
 
 // set connection timeout
 setTimeout(() => {

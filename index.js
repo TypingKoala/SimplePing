@@ -1,9 +1,17 @@
 // Initializing all the packages
+const https = require('https');
+const fs = require('fs');
 var express = require('express');
 var path = require('path');
 
 // Initialize the config file
 var config = require('./config');
+
+// Initialize SSL options
+const options = {
+    key: fs.readFileSync(config.keyPath),
+    cert: fs.readFileSync(config.certPath)
+}
 
 // Setting up constants
 const app = express();
@@ -33,3 +41,5 @@ app.ws('/ping', (ws, req) => {
 app.listen(port, () => {
     console.log(`The magic happens on port ${port}.`)
 })
+
+https.createServer(options, app).listen(3001);
