@@ -69,7 +69,7 @@ ws.onmessage = (evt) => {
     // if the parsed message is an integer and it has a corresponding start time
     if (parsedInt != NaN && parsedInt < startTimes.length) {
         // set the pingDiv to the ceiling of the ping
-        pingDiv.innerHTML = Math.ceil(performance.now() - startTimes[parsedInt]).toString()
+        pingDiv.innerHTML = Math.ceil(performance.now() - startTimes[parsedInt]).toString() + 'ms'
     } else { // otherwise, this message tells you the location
         console.log(`Connected to the ping server in ${evt.data}!`)
     }
