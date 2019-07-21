@@ -1,4 +1,5 @@
 // Initializing all the packages
+const http = require('http');
 const https = require('https');
 const fs = require('fs');
 var express = require('express');
@@ -7,18 +8,22 @@ var path = require('path');
 // Initialize the config file
 var config = require('./config');
 
-// Initialize SSL options
-const options = {
-    key: fs.readFileSync(config.keyPath),
-    cert: fs.readFileSync(config.certPath)
+const app = express();
+
+if (config.ssl) {
+    var server = https.createServer({
+        key: fs.readFileSync(config.keyPath),
+        cert: fs.readFileSync(config.certPath)
+    }, app).listen(3000, () => {
+        console.log("The magic happens on port 3000.")
+    });
+} else {
+    var server = http.createServer(app).listen(3000, () => {
+        console.log("The magic happens on port 3000.")
+    });
 }
 
-// Setting up constants
-const app = express();
-var httpsserver = https.createServer(options, app).listen(3000, () => {
-    console.log("The magic happens on port 3000.")
-});
-var expressWs = require('express-ws')(app, httpsserver);
+var expressWs = require('express-ws')(app, server);
 
 // default route
 app.get('/', (req, res) => {
