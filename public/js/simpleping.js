@@ -1,7 +1,15 @@
 var pingDiv = document.getElementById("ping");
 pingDiv.innerHTML = "Connecting...";
 
-var ws = new WebSocket(`wss://${location.host}/ping`);
+var ws = new WebSocket(`ws://${location.host}/ping`);
+
+// set connection timeout
+setTimeout(() => {
+    if (ws.readyState != 1) {
+        pingDiv.innerHTML = "Connection error.";
+        pingDiv.style.color = "black";
+    }
+}, 5000)
 
 // total samples to make
 const totalSamples = 10;
