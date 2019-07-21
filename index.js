@@ -15,7 +15,8 @@ const options = {
 
 // Setting up constants
 const app = express();
-var expressWs = require('express-ws')(app);
+const httpsserver = https.createServer(options, app)
+var expressWs = require('express-ws')(app, httpsserver);
 const port = 3000;
 
 // default route
@@ -36,6 +37,6 @@ app.ws('/ping', (ws, req) => {
     })
 })
 
-https.createServer(options, app).listen(3000, () => {
+httpsserver.listen(3000, () => {
     console.log("The magic happens on port 3000.")
 });
